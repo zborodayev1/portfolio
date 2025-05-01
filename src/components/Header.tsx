@@ -24,7 +24,11 @@ const Header: React.FC = () => {
   }, [])
 
   return (
-    <header
+    <motion.header
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 ${
         scrolled ? 'bg-white shadow-md' : 'bg-transparent'
       }`}
@@ -89,7 +93,7 @@ const Header: React.FC = () => {
           </nav>
         </div>
       )}
-    </header>
+    </motion.header>
   )
 }
 
