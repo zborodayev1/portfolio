@@ -1,0 +1,132 @@
+import { ExternalLink, Github } from 'lucide-react'
+import React from 'react'
+
+type Project = {
+  id: number
+  title: string
+  category: string
+  image: string
+  description: string
+  technologies: string[]
+  liveUrl?: string
+  sourceUrl?: string
+}
+
+const projects: Project[] = [
+  {
+    id: 1,
+    title: 'Market Nest',
+    category: 'Web Market',
+    image: '/icon.svg',
+    description:
+      'A modern website for a corporate client with custom animations and responsive design.',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
+    liveUrl: 'https://aircheck.kz',
+    sourceUrl: 'https://github.com/zborodayev1/Market-Nest',
+  },
+  {
+    id: 2,
+    title: 'Portfolio Website',
+    category: 'Web Design',
+    image:
+      'https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    description:
+      'Personal portfolio website with clean, minimalist design and smooth animations.',
+    technologies: ['React', 'Tailwind CSS', 'Framer Motion'],
+    liveUrl: '#home',
+    sourceUrl: 'https://github.com/zborodayev1/portfolio',
+  },
+]
+
+const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+  return (
+    <div className="group relative overflow-hidden rounded-lg bg-gray-100 transition-all duration-300">
+      <div className="aspect-video overflow-hidden">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+        <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+          <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
+          <p className="text-gray-300 text-sm mb-3">{project.category}</p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.technologies.map((tech, index) => (
+              <span
+                key={index}
+                className="bg-white/20 text-white text-xs px-2 py-1 rounded"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+          <div className="flex gap-3">
+            {project.liveUrl && project.liveUrl !== '#home' ? (
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={project.liveUrl}
+                className="bg-white text-black p-2 rounded-full hover:bg-gray-200 transition-colors z-10"
+                aria-label="View live project"
+              >
+                <ExternalLink size={16} />
+              </a>
+            ) : (
+              project.liveUrl &&
+              project.liveUrl === '#home' && (
+                <a
+                  href="#home"
+                  className="bg-white text-black p-2 rounded-full hover:bg-gray-200 transition-colors z-10"
+                  aria-label="View live project"
+                >
+                  <ExternalLink size={16} />
+                </a>
+              )
+            )}
+            {project.sourceUrl && (
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={project.sourceUrl}
+                className="bg-white text-black p-2 rounded-full hover:bg-gray-200 transition-colors z-10"
+                aria-label="View source code"
+              >
+                <Github size={16} />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const Projects: React.FC = () => {
+  return (
+    <section id="projects" className="py-20 bg-gray-50">
+      <div className="max-w-6xl mx-auto px-6 md:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+            My Work
+          </h2>
+          <div className="w-16 h-1 bg-black mx-auto"></div>
+          <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
+            Here are some of my recent projects. Each one represents a unique
+            challenge and solution in design and development.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Projects
