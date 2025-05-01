@@ -36,8 +36,9 @@ const Header: React.FC = () => {
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <a
           href="#home"
-          className="text-2xl font-bold tracking-tight text-black transition-all duration-300"
+          className="text-2xl flex gap-3 font-bold tracking-tight text-black transition-all duration-300"
         >
+          <img className="w-8 h-8" src="/icon.svg" />
           Portfolio
         </a>
 
