@@ -1,6 +1,7 @@
 import { motion, useAnimation } from 'framer-motion'
 import { Briefcase, Calendar, MapPin } from 'lucide-react'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 const About: React.FC = () => {
   const controls = useAnimation()
@@ -26,16 +27,70 @@ const About: React.FC = () => {
     })
   }, [controls])
 
+  const { ref, inView } = useInView()
+  const [isAnimate, setIsAnimate] = useState(false)
+  const controls2 = useAnimation()
+
+  useEffect(() => {
+    if (inView) {
+      setIsAnimate(true)
+    }
+  }, [inView])
+
+  useEffect(() => {
+    if (inView) {
+      const sequence = async () => {
+        setIsAnimate(true)
+        await controls2.start({
+          width: 120,
+          transition: { duration: 0.3, delay: 0.2 },
+        })
+        await controls2.start({
+          width: 64,
+          transition: { duration: 0.3, delay: 0.5 },
+        })
+      }
+      sequence()
+    }
+  }, [controls2, inView])
+
   return (
     <section id="about" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-black mb-4">About Me</h2>
-          <div className="w-16 h-1 bg-black mx-auto"></div>
+        <div ref={ref} className="text-center mb-16">
+          <div className="overflow-hidden mb-4 h-10">
+            <motion.h1
+              initial={{ y: 40 }}
+              animate={{ y: isAnimate ? 0 : 40 }}
+              exit={{ y: 40 }}
+              transition={{
+                duration: 0.5,
+                delay: 0.5,
+                type: 'spring',
+                stiffness: 200,
+                damping: 20,
+                mass: 1.2,
+              }}
+              className="text-4xl font-bold text-black "
+            >
+              About Me
+            </motion.h1>
+          </div>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={controls2}
+            exit={{ width: 0 }}
+            className=" h-1 bg-black mx-auto"
+          />
         </div>
 
-        {/* Центрирование блока с текстом и blob */}
-        <div className="flex justify-center items-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isAnimate ? 1 : 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex justify-center items-center"
+        >
           <div className="relative z-10 flex flex-col items-center text-center">
             <motion.div
               animate={controls}
@@ -63,25 +118,25 @@ const About: React.FC = () => {
 
               <div className="space-y-4 mb-8 ">
                 <div className="flex items-center justify-center">
-                  <Calendar size={20} className=" mr-4" />
+                  <Calendar size={20} className="mr-4" />
                   <div>
-                    <span className="">Age:</span>
+                    <span>Age:</span>
                     <span className="font-bold ml-2">16</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
-                  <MapPin size={20} className=" mr-4" />
+                  <MapPin size={20} className="mr-4" />
                   <div>
-                    <span className="">Location:</span>
+                    <span>Location:</span>
                     <span className="font-bold ml-2">
                       Taldykorgan, Kazakhstan
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
-                  <Briefcase size={20} className=" mr-4" />
+                  <Briefcase size={20} className="mr-4" />
                   <div>
-                    <span className="">Experience:</span>
+                    <span>Experience:</span>
                     <span className="font-bold ml-2">
                       No professional experience yet
                     </span>
@@ -90,7 +145,7 @@ const About: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

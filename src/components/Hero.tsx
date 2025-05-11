@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
                   damping: 20,
                   mass: 1.2,
                 }}
-                className="text-gray-600 text-lg  font-medium"
+                className="text-gray-600 text-lg font-medium"
               >
                 Hello, I'm
               </motion.h4>
@@ -142,21 +142,27 @@ const Hero: React.FC = () => {
               className="flex flex-row gap-4"
             >
               <a
-                href="#projects"
+                href="#skills"
                 className="bg-black text-white py-3 px-8 font-medium inline-flex items-center justify-center rounded-md hover:bg-gray-800 transition-colors duration-300"
               >
-                View My Work
+                View My Skils
                 <ArrowRight size={18} className="ml-2" />
               </a>
               <a
-                href="#contact"
+                href="#about"
                 className="bg-white text-black border border-black py-3 px-8 font-medium inline-flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-300"
               >
-                Contact Me
+                About Me
               </a>
             </motion.div>
           </div>
-          <div className="relative md:block">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="relative "
+          >
             <motion.div
               animate={controls}
               className="aspect-[4/4] bg-gray-200 rounded-full"
@@ -169,7 +175,7 @@ const Hero: React.FC = () => {
               animate={controls}
               className="absolute -bottom-6 -right-4 w-24 h-24  rounded-full bg-gray-300"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,5 +1,7 @@
 import { ExternalLink, Github } from 'lucide-react'
-import React from 'react'
+import { motion, useAnimation } from 'motion/react'
+import React, { useEffect, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 type Project = {
   id: number
@@ -17,7 +19,7 @@ const projects: Project[] = [
     id: 1,
     title: 'Market Nest',
     category: 'Web Market',
-    image: '/icon.svg',
+    image: '/mn.svg',
     description:
       'A modern website for a corporate client with custom animations and responsive design.',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
@@ -105,25 +107,97 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 }
 
 const Projects: React.FC = () => {
+  const { ref, inView } = useInView()
+  const [isAnimate, setIsAnimate] = useState(false)
+  const controls = useAnimation()
+
+  useEffect(() => {
+    if (inView) {
+      setIsAnimate(true)
+    }
+  }, [inView])
+
+  useEffect(() => {
+    if (inView) {
+      const sequence = async () => {
+        setIsAnimate(true)
+        await controls.start({
+          width: 140,
+          transition: { duration: 0.3, delay: 0.2 },
+        })
+        await controls.start({
+          width: 64,
+          transition: { duration: 0.3, delay: 0.5 },
+        })
+      }
+      sequence()
+    }
+  }, [controls, inView])
   return (
     <section id="projects" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6 md:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
-            My Work
-          </h2>
-          <div className="w-16 h-1 bg-black mx-auto"></div>
-          <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
-            Here are some of my recent projects. Each one represents a unique
-            challenge and solution in design and development.
-          </p>
+        <div ref={ref} className="text-center mb-16">
+          <div className="overflow-hidden mb-4 h-10">
+            <motion.h1
+              initial={{ y: 40 }}
+              animate={{ y: isAnimate ? 0 : 40 }}
+              exit={{ y: 40 }}
+              transition={{
+                duration: 0.5,
+                delay: 0.5,
+                type: 'spring',
+                stiffness: 200,
+                damping: 20,
+                mass: 1.2,
+              }}
+              className="text-4xl font-bold text-black "
+            >
+              My Projects
+            </motion.h1>
+          </div>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={controls}
+            exit={{ width: 0 }}
+            className=" h-1 bg-black mx-auto"
+          />
+          <div className="overflow-hidden h-6 mt-6">
+            <motion.p
+              initial={{ y: 30 }}
+              animate={{ y: isAnimate ? 0 : 30 }}
+              exit={{ y: 30 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
+              className="text-gray-600 max-w-2xl mx-auto"
+            >
+              Here are some of my recent projects. Each one represents a unique
+              challenge and solution in
+            </motion.p>
+          </div>
+          <div className="overflow-hidden h-6">
+            <motion.p
+              initial={{ y: 30 }}
+              animate={{ y: isAnimate ? 0 : 30 }}
+              exit={{ y: 30 }}
+              transition={{ duration: 0.3, delay: 0.8 }}
+              className="text-gray-600 max-w-2xl mx-auto"
+            >
+              {' '}
+              design and development.
+            </motion.p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isAnimate ? 1 : 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.9 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

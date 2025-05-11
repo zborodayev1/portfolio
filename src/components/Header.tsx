@@ -56,7 +56,7 @@ const Header: React.FC = () => {
               {item.name}
               <motion.span
                 variants={{
-                  rest: { width: 0 },
+                  rest: { width: '0%' },
                   hover: { width: '100%' },
                 }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
@@ -69,7 +69,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation Toggle */}
         <button
-          className="md:hidden text-black"
+          className="hidden text-black"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
