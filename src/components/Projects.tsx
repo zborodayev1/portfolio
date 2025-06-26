@@ -2,6 +2,7 @@ import { ExternalLink, Github } from 'lucide-react'
 import { motion, useAnimation } from 'motion/react'
 import React, { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+import image from '../../public/issuehub.png'
 
 type Project = {
   id: number
@@ -17,14 +18,21 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Market Nest',
-    category: 'Web Market',
-    image: '/mn.svg',
+    title: 'IssueHub',
+    category: 'Project Management',
+    image: image,
     description:
-      'A modern website for a corporate client with custom animations and responsive design.',
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
-    liveUrl: 'https://aircheck.kz',
-    sourceUrl: 'https://github.com/zborodayev1/Market-Nest',
+      'Task and project management platform inspired by GitHub Issues. Includes authentication, Kanban board, filtering, comments, and role-based access.',
+    technologies: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Node.js',
+      'Express',
+      'MongoDB',
+    ],
+    liveUrl: 'https://issuehub',
+    sourceUrl: 'https://github.com/issuehubcom/issuehub',
   },
   {
     id: 2,
@@ -155,6 +163,7 @@ const Projects: React.FC = () => {
               My Projects
             </motion.h1>
           </div>
+
           <motion.div
             initial={{ width: 0 }}
             animate={controls}

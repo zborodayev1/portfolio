@@ -1,4 +1,3 @@
-import { Menu, X } from 'lucide-react'
 import { motion } from 'motion/react'
 import React, { useEffect, useState } from 'react'
 
@@ -11,7 +10,6 @@ const navItems = [
 ]
 
 const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -38,7 +36,6 @@ const Header: React.FC = () => {
           href="#home"
           className="text-2xl flex gap-3 font-bold tracking-tight text-black transition-all duration-300"
         >
-          <img className="w-8 h-8" src="/icon.svg" />
           Portfolio
         </a>
 
@@ -66,34 +63,7 @@ const Header: React.FC = () => {
             </motion.a>
           ))}
         </nav>
-
-        {/* Mobile Navigation Toggle */}
-        <button
-          className="hidden text-black"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
-
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 bg-white z-40 pt-20">
-          <nav className="flex flex-col items-center justify-center h-full">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-xl py-4 text-gray-800 font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
-        </div>
-      )}
     </motion.header>
   )
 }
