@@ -27,10 +27,10 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24 xl:px-32"
+      className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24 xl:px-32 pt-20 md:pt-0"
     >
       <div className="max-w-4xl">
-        <div className="hero-line flex items-center gap-2 mb-8" style={{ opacity: 0 }}>
+        <div className="hero-line flex items-center gap-2 mb-6 md:mb-8" style={{ opacity: 0 }}>
           <span style={{ color: '#3b82f6' }} className="text-sm font-mono">~/portfolio</span>
           <span style={{ color: '#475569' }} className="text-sm font-mono">$</span>
           <span style={{ color: '#94a3b8' }} className="text-sm font-mono">whoami</span>
@@ -41,8 +41,8 @@ export const Hero = () => {
         </div>
 
         <h1
-          className="hero-line font-mono font-bold leading-none mb-6"
-          style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', letterSpacing: '-0.02em', opacity: 0 }}
+          className="hero-line font-mono font-bold leading-none mb-5 md:mb-6"
+          style={{ fontSize: 'clamp(2.4rem, 8vw, 7rem)', letterSpacing: '-0.02em', opacity: 0 }}
         >
           <span style={{ color: '#f0f4f8' }}>Zakhar</span>
           <br />
@@ -50,21 +50,21 @@ export const Hero = () => {
         </h1>
 
         <p
-          className="hero-line text-xl md:text-2xl mb-4 font-mono"
+          className="hero-line text-lg md:text-2xl mb-3 md:mb-4 font-mono"
           style={{ color: '#94a3b8', opacity: 0 }}
         >
           Backend Engineer
         </p>
 
         <p
-          className="hero-line text-sm mb-10 font-mono"
+          className="hero-line text-xs md:text-sm mb-7 md:mb-10 font-mono"
           style={{ color: '#3d5070', opacity: 0 }}
         >
           Node.js · TypeScript · PostgreSQL · Express
         </p>
 
         <p
-          className="hero-line text-base md:text-lg mb-10 max-w-xl leading-relaxed"
+          className="hero-line text-sm md:text-lg mb-8 md:mb-10 max-w-xl leading-relaxed"
           style={{ color: '#94a3b8', opacity: 0 }}
         >
           Building APIs, real-time systems, and digging into how things actually work under the hood. From Kazakhstan.

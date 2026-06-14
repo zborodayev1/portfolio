@@ -73,16 +73,16 @@ export const About = () => {
   return (
     <section
       ref={ref}
-      className="px-6 md:px-16 lg:px-24 xl:px-32 py-32"
+      className="px-6 md:px-16 lg:px-24 xl:px-32 py-16 md:py-32"
       style={{ borderTop: '1px solid rgba(59,130,246,0.07)' }}
     >
       <div className="max-w-4xl">
-        <p className="a-item text-xs font-mono mb-10" style={{ color: '#3b82f6', opacity: 0 }}>
+        <p className="a-item text-xs font-mono mb-7 md:mb-10" style={{ color: '#3b82f6', opacity: 0 }}>
           // about
         </p>
 
         <p
-          className="a-item text-lg md:text-xl leading-relaxed mb-5 max-w-2xl"
+          className="a-item text-base md:text-xl leading-relaxed mb-5 max-w-2xl"
           style={{ color: '#94a3b8', opacity: 0 }}
         >
           Junior backend developer from Kazakhstan. I work with{' '}
@@ -91,7 +91,7 @@ export const About = () => {
         </p>
 
         <p
-          className="a-item text-sm leading-relaxed mb-14 max-w-2xl"
+          className="a-item text-sm leading-relaxed mb-10 md:mb-14 max-w-2xl"
           style={{ color: '#3d5070', opacity: 0 }}
         >
           Strong at debugging and navigating existing codebases. Starting to think about
@@ -118,13 +118,13 @@ export const About = () => {
         >
           <div style={CARD}>
             <p className="text-xs font-mono mb-2" style={{ color: '#3d5070' }}>Age</p>
-            <p className="text-sm font-mono tabular-nums" style={{ color: '#38bdf8' }}>
+            <p className="text-xs md:text-sm font-mono tabular-nums" style={{ color: '#38bdf8' }}>
               {formatElapsed(BIRTH, now)}
             </p>
           </div>
           <div style={CARD}>
             <p className="text-xs font-mono mb-2" style={{ color: '#3d5070' }}>Experience</p>
-            <p className="text-sm font-mono tabular-nums" style={{ color: '#38bdf8' }}>
+            <p className="text-xs md:text-sm font-mono tabular-nums" style={{ color: '#38bdf8' }}>
               {formatElapsed(EXP_START, now)}
             </p>
           </div>

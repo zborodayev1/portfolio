@@ -64,11 +64,11 @@ export const Projects = () => {
   return (
     <section
       ref={ref}
-      className="px-6 md:px-16 lg:px-24 xl:px-32 py-32"
+      className="px-6 md:px-16 lg:px-24 xl:px-32 py-16 md:py-32"
       style={{ borderTop: '1px solid rgba(59,130,246,0.07)' }}
     >
       <div className="max-w-4xl">
-        <p className="text-xs font-mono mb-12" style={{ color: '#3b82f6' }}>
+        <p className="text-xs font-mono mb-8 md:mb-12" style={{ color: '#3b82f6' }}>
           // projects
         </p>
 
@@ -76,7 +76,7 @@ export const Projects = () => {
           {projects.map((project) => (
             <div
               key={project.name}
-              className="project-card group p-8 transition-all duration-300"
+              className="project-card group p-5 sm:p-8 transition-all duration-300"
               style={{
                 background: '#0d1526',
                 border: '1px solid rgba(59,130,246,0.15)',

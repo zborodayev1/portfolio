@@ -50,15 +50,15 @@ export const Skills = () => {
   return (
     <section
       ref={ref}
-      className="px-6 md:px-16 lg:px-24 xl:px-32 py-32"
+      className="px-6 md:px-16 lg:px-24 xl:px-32 py-16 md:py-32"
       style={{ borderTop: '1px solid rgba(59,130,246,0.07)' }}
     >
       <div className="max-w-4xl">
-        <p className="text-xs font-mono mb-12" style={{ color: '#3b82f6' }}>
+        <p className="text-xs font-mono mb-8 md:mb-12" style={{ color: '#3b82f6' }}>
           // skills
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {groups.map((group) => (
             <div key={group.label} className="skill-group" style={{ opacity: 0 }}>
               <p
