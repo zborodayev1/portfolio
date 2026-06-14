@@ -4,13 +4,37 @@
   font-family: "Geist Mono", monospace;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #000;
-
+  color-scheme: dark;
+  color: #f0f4f8;
+  background-color: #080c14;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #080c14;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #080c14; }
+::-webkit-scrollbar-thumb { background: rgba(59,130,246,0.3); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(59,130,246,0.6); }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
